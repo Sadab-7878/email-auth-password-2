@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Navbar = () => {
@@ -16,6 +16,17 @@ const Navbar = () => {
       <li>
         <Link to={"/register"}>Register</Link>
       </li>
+
+      {user && (
+        <>
+          <li>
+            <NavLink to={"/orders"}>Orders</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/profile"}>Profile</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 

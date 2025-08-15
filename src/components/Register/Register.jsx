@@ -1,15 +1,13 @@
 import React, { useContext } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
+  const naviagte = useNavigate();
 
-  const {createUser} = useContext(AuthContext);
+  const { createUser } = useContext(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
-
-
-
 
     const name = e.target.name.value;
     const email = e.target.email.value;
@@ -17,17 +15,18 @@ const Register = () => {
 
     console.log(name, email, password);
 
-
-    // create user 
+    // create user
 
     createUser(email, password)
-    .then(result => {
-      const user = result.user;
-      console.log(user);
-    })
-    .catch(error => {
-      console.log(error);
-    })
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        e.target.reset();
+        naviagte("/login");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <>
